@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# PROJECT_PATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && cd .. && pwd )"
+
+
+PS3='Please enter your choice: '
+options=("extractLikers" "likerInterest" "Quit")
+select opt in "${options[@]}"
+do
+    case $opt in
+        "extractLikers")
+            echo "you chose choice 1"
+            docker exec -it growth_kafka kafka-consumer-groups --bootstrap-server kafka:29092 --describe --group extractLikers
+            ;;
+        "likerInterest")
+            echo "you chose choice 2"
+            docker exec -it growth_kafka kafka-consumer-groups --bootstrap-server kafka:29092 --describe --group likerInterest
+            ;;
+        "Quit")
+            break
+            ;;
+        *) echo "invalid option $REPLY";;
+    esac
+done
+
+

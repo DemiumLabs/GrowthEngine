@@ -1,0 +1,20 @@
+{
+  "name": "Liker",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+  },
+  "validations": [],
+  "relations": {
+    "interests": {
+      "type": "hasMany",
+      "model": "Interest",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

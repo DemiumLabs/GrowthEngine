@@ -1,0 +1,13 @@
+tqdm==4.28.1
+requests==2.20.0
+requests-toolbelt==0.8.0
+pycodestyle
+pyflakes
+schedule
+pysocks
+pytest
+responses
+future
+six
+huepy
+kafka-python

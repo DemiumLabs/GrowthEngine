@@ -1,0 +1,25 @@
+{
+  "name": "Tagger",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "mixins": {
+    "KafkaProducer": true
+  },
+  "properties": {
+    "link": {
+      "type": "string",
+      "required": true
+    },
+    "passporterInterest": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

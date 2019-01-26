@@ -1,0 +1,3 @@
+docker exec -it growth_kafka kafka-topics --create --zookeeper zookeeper:2181 --topic tags --replication-factor 1 --partitions 60
+docker exec -it growth_kafka kafka-topics --create --zookeeper zookeeper:2181 --topic likers --replication-factor 1 --partitions 60
+docker exec -it growth_kafka kafka-topics --create --zookeeper zookeeper:2181 --topic sends --replication-factor 1 --partitions 60

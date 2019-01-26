@@ -1,0 +1,9 @@
+{
+  "db": {
+    "host": "growth_mongo",
+    "port": 27017,
+    "database": "test",
+    "name": "db",
+    "connector": "mongodb"
+  }
+}

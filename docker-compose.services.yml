@@ -1,0 +1,183 @@
+version: "3.0"
+networks:
+    main:
+        external: true
+services:
+  growth_send_to_mailer:
+    # stdin_open: true
+    # tty: true
+    image: growth_services
+    container_name: growth_send_to_mailer
+    restart: always
+    build:
+      context: ./services/
+      dockerfile: ./Dockerfile
+    #command: bash -c "tail -f"
+    command: bash -c "python src/sendToMailer.py"
+    volumes:
+      - ./services:/opt/app
+    environment:
+      KAFKA_URL: kafka:29092
+      MAILER_API_URL: mailer_api:3000
+    networks:
+      - main
+  growth_send_daemon:
+    # stdin_open: true
+    # tty: true
+    image: growth_services
+    container_name: growth_send_daemon
+    restart: always
+    build:
+      context: ./services/
+      dockerfile: ./Dockerfile
+    command: bash -c "python src/sendMails.py"
+    volumes:
+      - ./services:/opt/app
+    environment:
+      KAFKAURL: kafka:29092
+      GROWTH_API_URL: growth_api:3000
+    networks:
+      - main
+  growth_instabot_extract_likers_01:
+    image: growth_services
+    container_name: growth_extract_likers_01
+    restart: always
+    build:
+      context: ./services/
+      dockerfile: ./Dockerfile
+    command: bash -c "python src/extractLikersFromTags.py"
+    volumes:
+      - ./services:/opt/app
+    environment:
+      KAFKAURL: kafka:29092
+      USERNAME: xx
+      PASSWORD: xx
+      COOKIE: 'extract_likers_01.txt'
+    networks:
+      - main
+  instabot_likers_01:
+    image: growth_services
+    container_name: growth_likers_01
+    restart: always
+    build:
+      context: ./services/
+      dockerfile: ./Dockerfile
+    command: bash -c "python src/likerInterest.py"
+    volumes:
+      - ./services:/opt/app
+    environment:
+      KAFKAURL: kafka:29092
+      USERNAME: xx
+      PASSWORD: xx
+      SLEEPTIME: 5
+      COOKIE: 'likers_01.txt'
+    networks:
+      - main
+  instabot_likers_02:
+    image: growth_services
+    container_name: growth_likers_02
+    restart: always
+    build:
+      context: ./services/
+      dockerfile: ./Dockerfile
+    command: bash -c "python src/likerInterest.py"
+    volumes:
+      - ./services:/opt/app
+    environment:
+      KAFKAURL: kafka:29092
+      USERNAME: xx
+      PASSWORD: xx
+      SLEEPTIME: 5
+      COOKIE: 'likers_02.txt'
+    networks:
+      - main
+  instabot_likers_03:
+    image: growth_services
+    container_name: growth_likers_03
+    restart: always
+    build:
+      context: ./services/
+      dockerfile: ./Dockerfile
+    command: bash -c "python src/likerInterest.py"
+    volumes:
+      - ./services:/opt/app
+    environment:
+      KAFKAURL: kafka:29092
+      USERNAME: xx
+      PASSWORD: xx
+      SLEEPTIME: 5
+      COOKIE: 'likers_03.txt'
+    networks:
+      - main
+  instabot_likers_04:
+    image: growth_services
+    container_name: growth_likers_04
+    restart: always
+    build:
+      context: ./services/
+      dockerfile: ./Dockerfile
+    command: bash -c "python src/likerInterest.py"
+    volumes:
+      - ./services:/opt/app
+    environment:
+      KAFKAURL: kafka:29092
+      USERNAME: xx
+      PASSWORD: xx
+      SLEEPTIME: 5
+      COOKIE: 'likers_04.txt'
+    networks:
+      - main
+  instabot_likers_05:
+    image: growth_services
+    container_name: growth_likers_05
+    restart: always
+    build:
+      context: ./services/
+      dockerfile: ./Dockerfile
+    command: bash -c "python src/likerInterest.py"
+    volumes:
+      - ./services:/opt/app
+    environment:
+      KAFKAURL: kafka:29092
+      USERNAME: xx
+      PASSWORD: xx
+      SLEEPTIME: 5
+      COOKIE: 'likers_05.txt'
+    networks:
+      - main
+  instabot_likers_06:
+    image: growth_services
+    container_name: growth_likers_06
+    restart: always
+    build:
+      context: ./services/
+      dockerfile: ./Dockerfile
+    command: bash -c "python src/likerInterest.py"
+    volumes:
+      - ./services:/opt/app
+    environment:
+      KAFKAURL: kafka:29092
+      USERNAME: xx
+      PASSWORD: xx
+      SLEEPTIME: 5
+      COOKIE: 'likers_06.txt'
+    networks:
+      - main
+  instabot_likers_07:
+    image: growth_services
+    container_name: growth_likers_07
+    restart: always
+    build:
+      context: ./services/
+      dockerfile: ./Dockerfile
+    command: bash -c "python src/likerInterest.py"
+    volumes:
+      - ./services:/opt/app
+    environment:
+      KAFKAURL: kafka:29092
+      USERNAME: xx
+      PASSWORD: xx
+      SLEEPTIME: 5
+      COOKIE: 'likers_07.txt'
+    networks:
+      - main

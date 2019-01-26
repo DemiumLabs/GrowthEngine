@@ -1,0 +1,9 @@
+#!/bin/bash
+
+####################
+###   Binaries   ###
+####################
+DOCKER=$(which docker)
+####################
+
+${DOCKER} service update --image localhost:5000/noraina/api noraina-api_fireloop;

@@ -1,0 +1,31 @@
+#!/bin/bash
+
+####################
+###   Binaries   ###
+####################
+DOCKER=$(which docker)
+####################
+
+PROJECT_PATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && cd .. && pwd )"
+
+if [ -z $1 ]; then
+    echo "Version argument required" 
+    exit 1 
+fi 
+VERSION=$1
+
+while read line; do export "$line";
+done < <(cat ${PROJECT_PATH}/.env | grep -v "#" | grep -v "^$")
+
+${DOCKER} build -t localhost:5000/noraina/api:latest \
+               -f ${PROJECT_PATH}/docker/production-backend/Dockerfile ${PROJECT_PATH} \
+               --build-arg USER_ID=1000 \
+               --build-arg GROUP_ID=1000 \
+               --build-arg JWT_SECRET_ARG=${JWT_SECRET} \
+               --build-arg HMAC_SECRET_ARG=${HMAC_SECRET} \
+               --no-cache
+
+${DOCKER} tag localhost:5000/noraina/api:latest localhost:5000/noraina/api:${VERSION}
+
+${DOCKER} push localhost:5000/noraina/api:latest
+${DOCKER} push localhost:5000/noraina/api:${VERSION}

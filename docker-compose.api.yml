@@ -1,0 +1,41 @@
+version: "3.0"
+services:
+  growth_api:
+    image: growth_api
+    container_name: growth_api
+    restart: always
+    depends_on:
+      - growth_mongo
+      # - broker
+    build:
+      context: ./api/
+      dockerfile: ./Dockerfile
+    command: bash -c "npm install && nodemon ."
+    volumes:
+      - ./api:/usr/src/app
+    ports:
+      - "3000:3000"
+      # - "9229:9229"
+    # links:
+    #   - growth_mongo
+    # external_links:
+    #   - broker
+    networks:
+      - main
+      - growth
+    environment:
+      KAFKA_URL: kafka:29092
+
+  growth_mongo:
+    container_name: growth_mongo
+    image: mongo:latest
+    environment:
+      - MONGO_DATA_DIR=/data/db
+      - MONGO_LOG_DIR=/dev/null
+    volumes:
+      - ./data/db:/data/db
+    # ports:
+    #   - 27017:27017
+    networks:
+      - main 
+      - growth

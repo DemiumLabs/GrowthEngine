@@ -1,0 +1,19 @@
+<ul *ngIf="data && taggerCounts">
+  <li *ngFor="let record of data">
+    <b>{{record.likers?.length }}</b> users interested in <b>{{ record.passporterInterest | taxName  }}</b>  with <b>{{ taggerCounts | taggerCount:record.passporterInterest }}</b> medias tagged
+    <ul>
+        <li *ngFor="let top of record.tops">
+            {{ top.quantity }} users with {{top.count}} hits 
+        </li>
+    </ul>
+  </li>
+</ul>
+
+
+Load {{ pageSeek }} of {{pages}}
+
+<ul *ngIf="taggerCounts">
+  <li *ngFor="let taggerCount of taggerCounts">
+    <b>{{ taggerCount.count }}</b> medias of <b>{{ taggerCount.passporterInterest | taxName  }}</b>  have been tagged
+  </li>
+</ul>

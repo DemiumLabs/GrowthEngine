@@ -1,0 +1,7 @@
+#!/bin/bash
+
+pwd
+cd ..
+cd instabot
+docker rm instabot
+docker run --name instabot -p 81:80 -i -t instabot python examples/like_example.py $@
